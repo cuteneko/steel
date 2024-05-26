@@ -14,6 +14,14 @@
       }
     }
   ],
+  "contributors": [
+    {
+      "name": "CSneko",
+      "contact": {
+        "homepage": "https://github.com/CSneko"
+      }
+    }
+  ],
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/steel-for-fabric",
     "sources": "https://github.com/realguyman/steel",
