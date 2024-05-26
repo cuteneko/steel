@@ -23,7 +23,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers.Factory;
 import net.minecraft.village.VillagerProfession;
-
 public class Steel implements ModInitializer {
     public static final String MOD_ID = "steel";
 
@@ -142,12 +141,13 @@ public class Steel implements ModInitializer {
         for (int i = 0; i < CHEST_LOOT_TABLES.length; i++) {
             lootTables[i] = new Identifier("minecraft", "chests/" + CHEST_LOOT_TABLES[i]);
         }
-
+        // I don't know why it not run.
+        /*
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
             if (id.equals(lootTables[3])) {
                 tableBuilder.pool(
                         LootPool.builder().rolls(
-                                UniformLootNumberProvider.create(0, 3)
+                                UniformLootNumberProvider.create(0,3)
                         ).with(
                                 ItemEntry.builder(ItemRegistry.STEEL_SHOVEL)
                                         .weight(3)
@@ -227,7 +227,7 @@ public class Steel implements ModInitializer {
                     break;
                 }
             }
-        });
+        });*/
 
         Registry.register(Registries.ITEM_GROUP, new Identifier(MOD_ID, "steel"), ITEM_GROUP);// Register the itemgroup
     }
