@@ -22,12 +22,32 @@ public class SteelArmorMaterial implements ArmorMaterial {
 
     @Override
     public int getDurability(ArmorItem.Type type) {
-        return DURABILITY[type.getEquipmentSlot().ordinal()];
+        switch (type) {
+            case HELMET:
+                return PROTECTION[0];
+            case CHESTPLATE:
+                return PROTECTION[1];
+            case LEGGINGS:
+                return PROTECTION[2];
+            case BOOTS:
+                return PROTECTION[3];
+        }
+        return 0;
     }
 
     @Override
     public int getProtection(ArmorItem.Type type) {
-        return PROTECTION[type.getEquipmentSlot().ordinal()];
+        switch (type) {
+            case HELMET:
+                return DURABILITY[0];
+            case CHESTPLATE:
+                return DURABILITY[1];
+            case LEGGINGS:
+                return DURABILITY[2];
+            case BOOTS:
+                return DURABILITY[3];
+        }
+        return 0;
     }
 
     @Override
