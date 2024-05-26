@@ -3,7 +3,8 @@ package io.github.realguyman.steel;
 import io.github.realguyman.steel.registry.BlockRegistry;
 import io.github.realguyman.steel.registry.ItemRegistry;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -15,6 +16,9 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers.Factory;
@@ -41,9 +45,10 @@ public class Steel implements ModInitializer {
         "woodland_mansion"
     };
 
-    public static final ItemGroup ITEM_GROUP = FabricItemGroupBuilder.create(
-        new Identifier(MOD_ID, "all")
-    ).icon(() -> new ItemStack(ItemRegistry.STEEL_INGOT)).appendItems(stacks -> {
+    public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder()
+    .icon(() -> new ItemStack(ItemRegistry.STEEL_INGOT))
+            .displayName(Text.translatable("itemGroup.steel.all"))
+            .entries((context, stacks) -> {
         stacks.add(new ItemStack(ItemRegistry.STEEL_INGOT));
         stacks.add(new ItemStack(ItemRegistry.STEEL_NUGGET));
         stacks.add(new ItemStack(ItemRegistry.STEEL_BLOCK));
@@ -223,5 +228,7 @@ public class Steel implements ModInitializer {
                 }
             }
         });
+
+        Registry.register(Registries.ITEM_GROUP, new Identifier(MOD_ID, "steel"), ITEM_GROUP);// Register the itemgroup
     }
 }

@@ -2,7 +2,7 @@ package io.github.realguyman.steel.material;
 
 import io.github.realguyman.steel.Configuration;
 import io.github.realguyman.steel.registry.ItemRegistry;
-import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
@@ -19,14 +19,15 @@ public class SteelArmorMaterial implements ArmorMaterial {
 
     public static final SteelArmorMaterial INSTANCE = new SteelArmorMaterial();
 
+
     @Override
-    public int getDurability(EquipmentSlot slot) {
-        return DURABILITY[slot.getEntitySlotId()] * Configuration.armorBaseDurabilityMultiplier;
+    public int getDurability(ArmorItem.Type type) {
+        return DURABILITY[type.getEquipmentSlot().ordinal()];
     }
 
     @Override
-    public int getProtectionAmount(EquipmentSlot slot) {
-        return PROTECTION[slot.getEntitySlotId()];
+    public int getProtection(ArmorItem.Type type) {
+        return PROTECTION[type.getEquipmentSlot().ordinal()];
     }
 
     @Override

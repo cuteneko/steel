@@ -8,66 +8,67 @@ import io.github.realguyman.steel.item.SteelAxeItem;
 import io.github.realguyman.steel.item.SteelHoeItem;
 import io.github.realguyman.steel.item.SteelPickaxeItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 public class ItemRegistry {
+    // CSNeko: All item register to "steel" item,So there is no need to set itemgroup in item settings.
+    
     public static final Item STEEL_INGOT = new Item(
-        new FabricItemSettings().group(ItemGroup.MISC)
+        new FabricItemSettings()
     );
 
     public static final Item STEEL_NUGGET = new Item(
-        new FabricItemSettings().group(ItemGroup.MISC)
+        new FabricItemSettings()
     );
 
     public static final Item STEEL_BLOCK = new BlockItem(
         BlockRegistry.STEEL_BLOCK,
-        new FabricItemSettings().group(ItemGroup.DECORATIONS)
+        new FabricItemSettings()
     );
-
     public static final Item STEEL_HELMET = new ArmorItem(
         SteelArmorMaterial.INSTANCE,
-        EquipmentSlot.HEAD,
-        new FabricItemSettings().group(ItemGroup.COMBAT)
+        ArmorItem.Type.HELMET,
+        new FabricItemSettings()
     );
 
     public static final Item STEEL_CHESTPLATE = new ArmorItem(
         SteelArmorMaterial.INSTANCE,
-        EquipmentSlot.CHEST,
-        new FabricItemSettings().group(ItemGroup.COMBAT)
+        ArmorItem.Type.CHESTPLATE,
+        new FabricItemSettings()
     );
 
     public static final Item STEEL_LEGGINGS = new ArmorItem(
         SteelArmorMaterial.INSTANCE,
-        EquipmentSlot.LEGS,
-        new FabricItemSettings().group(ItemGroup.COMBAT)
+        ArmorItem.Type.LEGGINGS,
+        new FabricItemSettings()
     );
 
     public static final Item STEEL_BOOTS = new ArmorItem(
         SteelArmorMaterial.INSTANCE,
-        EquipmentSlot.FEET,
-        new FabricItemSettings().group(ItemGroup.COMBAT)
+        ArmorItem.Type.BOOTS,
+        new FabricItemSettings()
     );
 
     public static final Item STEEL_SHOVEL = new ShovelItem(SteelToolMaterial.INSTANCE, 1.5F, -3.0F,
-            new FabricItemSettings().group(ItemGroup.TOOLS));
+            new FabricItemSettings());
 
     public static final Item STEEL_PICKAXE = new SteelPickaxeItem(SteelToolMaterial.INSTANCE, 1, -2.8F,
-            new FabricItemSettings().group(ItemGroup.TOOLS));
+            new FabricItemSettings());
 
     public static final Item STEEL_AXE = new SteelAxeItem(SteelToolMaterial.INSTANCE, Configuration.axeAttackDamage, -3.1F,
-            new FabricItemSettings().group(ItemGroup.TOOLS));
+            new FabricItemSettings());
 
     public static final Item STEEL_HOE = new SteelHoeItem(SteelToolMaterial.INSTANCE, -2, -1.0F,
-            new FabricItemSettings().group(ItemGroup.TOOLS));
+            new FabricItemSettings());
 
     public static final Item STEEL_SWORD = new SwordItem(SteelToolMaterial.INSTANCE, Configuration.swordAttackDamage, -2.4F,
-            new FabricItemSettings().group(ItemGroup.COMBAT));
+            new FabricItemSettings());
 
     private static void add(String name, Item item) {
-        Registry.register(Registry.ITEM, new Identifier(Steel.MOD_ID, name), item);
+        Registry.register(Registries.ITEM, new Identifier(Steel.MOD_ID, name), item);
     }
 
     public static void register() {
